@@ -25,6 +25,10 @@ Using unknown versions of pip, setuptools and/or wheel packages/" )
     set(bdist_commands ${bdist_commands} "--plat-name" "${SimpleITK_PYTHON_PLAT_NAME}")
   endif()
 
+  if( NOT SimpleITK_PYTHON_USE_VIRTUALENV )
+    set( VIRTUAL_PYTHON_EXECUTABLE ${PYTHON_EXECUTABLE} )
+  endif()
+
   add_custom_target( dist.Python
     ${VIRTUAL_PYTHON_EXECUTABLE} ${bdist_setup} ${bdist_commands}
     WORKING_DIRECTORY ${SimpleITK_Python_BINARY_DIR}
